@@ -15,7 +15,7 @@ PImage ship, enemy, hp, treasure, bg1, bg2;
 PImage end1, end2;
 int treasureX,treasureY, back1X, back2X, hpX;
 float spacingX = 70,spacingY = 50,spacingZ = 60;
-float enemyX=0,enemyY1= floor(random(440)),enemyY2=250,enemyY3=180;
+float enemyX=-400,enemyY1= floor(random(440)),enemyY2=250,enemyY3=180;
 
 float shipX, shipY;
 float speed = 5;
@@ -111,7 +111,7 @@ void draw() {
       case ONE_MOVE:
         for (int i=0; i<5; i++){
           image(enemy, enemyX+i*spacingX,enemyY1);
-        if(enemyX>637){
+        if(enemyX>637){          
           enemyMove=TWO_MOVE;
         }
        }
@@ -120,7 +120,7 @@ void draw() {
       case TWO_MOVE:
        for(int j=0;j<5;j++){
           image(enemy, enemyX+j*spacingY,enemyY2-j*spacingY);
-       if(enemyX>637){
+       if(enemyX>636){
           enemyMove=THREE_MOVE;
          }
        }
@@ -133,8 +133,11 @@ void draw() {
           image(enemy, enemyX+(4-k)*spacingZ,enemyY3-k*spacingX);
           image(enemy, enemyX+(4-k)*spacingZ,enemyY3+k*spacingX);
         if(enemyX>588){
-          enemyMove=ONE_MOVE;
-          enemyY1= floor(random(440));
+          enemyX += 1;
+          if(enemyX >=637){
+            enemyMove=ONE_MOVE;
+            enemyY1= floor(random(440));
+          }
          }
          }
         break;
